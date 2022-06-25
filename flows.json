@@ -1,0 +1,385 @@
+[
+    {
+        "id": "a1b2b31b.65fe7",
+        "type": "tab",
+        "label": "Flow 1"
+    },
+    {
+        "id": "ad1f790ed988ef15",
+        "type": "inject",
+        "z": "a1b2b31b.65fe7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 140,
+        "wires": [
+            [
+                "226ab43fd7481ffa"
+            ]
+        ]
+    },
+    {
+        "id": "0f121553db44c48f",
+        "type": "file",
+        "z": "a1b2b31b.65fe7",
+        "name": "",
+        "filename": "/home/alain/Documents/Python_Programs/create_env.sh",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 810,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "226ab43fd7481ffa",
+        "type": "template",
+        "z": "a1b2b31b.65fe7",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "python",
+        "syntax": "plain",
+        "template": "#!/bin/bash \n\ncd /home/alain/Documents/Python_Programs/\nls -l\npython3 -m venv envtest\nsource envtest/bin/activate\nls -l\nwhich python",
+        "output": "str",
+        "x": 460,
+        "y": 140,
+        "wires": [
+            [
+                "0f121553db44c48f"
+            ]
+        ]
+    },
+    {
+        "id": "4d4633d1463f4b24",
+        "type": "comment",
+        "z": "a1b2b31b.65fe7",
+        "name": "create bash file that creates and activates venv",
+        "info": "In the template node we create a bash file that will create a virtual python environment and activate the environment.\n\n#!/bin/bash \n\ncd /data\nls -l\npython3 -m venv envtest\nsource envtest/bin/activate\nls -l\nwhich python",
+        "x": 500,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "16f1b41555474236",
+        "type": "inject",
+        "z": "a1b2b31b.65fe7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 260,
+        "y": 280,
+        "wires": [
+            [
+                "f4f37120c91aa25a"
+            ]
+        ]
+    },
+    {
+        "id": "f4f37120c91aa25a",
+        "type": "exec",
+        "z": "a1b2b31b.65fe7",
+        "command": "chmod u+x /home/alain/Documents/Python_Programs/create_env.sh",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "make create_env.sh file executable",
+        "x": 520,
+        "y": 280,
+        "wires": [
+            [
+                "7f79db55420158de"
+            ],
+            [
+                "7f79db55420158de"
+            ],
+            [
+                "7f79db55420158de"
+            ]
+        ]
+    },
+    {
+        "id": "7f79db55420158de",
+        "type": "debug",
+        "z": "a1b2b31b.65fe7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "07b3be63bd132ea8",
+        "type": "inject",
+        "z": "a1b2b31b.65fe7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 260,
+        "y": 420,
+        "wires": [
+            [
+                "4b4229b8c9709186"
+            ]
+        ]
+    },
+    {
+        "id": "4b4229b8c9709186",
+        "type": "exec",
+        "z": "a1b2b31b.65fe7",
+        "command": "bash /home/alain/Documents/Python_Programs/create_env.sh",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "execute create_env.sh",
+        "x": 500,
+        "y": 420,
+        "wires": [
+            [
+                "66eb7e5294ba6290"
+            ],
+            [
+                "66eb7e5294ba6290"
+            ],
+            [
+                "66eb7e5294ba6290"
+            ]
+        ]
+    },
+    {
+        "id": "66eb7e5294ba6290",
+        "type": "debug",
+        "z": "a1b2b31b.65fe7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "8ec4f137e43e098c",
+        "type": "debug",
+        "z": "a1b2b31b.65fe7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "c1c3aa6132e37e04",
+        "type": "pythonshell in",
+        "z": "a1b2b31b.65fe7",
+        "name": "example",
+        "pyfile": "/home/alain/Documents/Python_Programs/openBCI.py",
+        "virtualenv": "/home/alain/Documents/Python_Programs/envtest",
+        "continuous": true,
+        "stdInData": true,
+        "x": 560,
+        "y": 560,
+        "wires": [
+            [
+                "8ec4f137e43e098c"
+            ]
+        ]
+    },
+    {
+        "id": "0408acbbd7f0db6e",
+        "type": "inject",
+        "z": "a1b2b31b.65fe7",
+        "name": "Estatura",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1.71",
+        "payloadType": "num",
+        "x": 280,
+        "y": 560,
+        "wires": [
+            [
+                "25601874a571bca1"
+            ]
+        ]
+    },
+    {
+        "id": "6e1abc877b7775cd",
+        "type": "comment",
+        "z": "a1b2b31b.65fe7",
+        "name": "inject a number to the python script and display it in the debug window",
+        "info": "",
+        "x": 590,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "54c541ebefe6f833",
+        "type": "inject",
+        "z": "a1b2b31b.65fe7",
+        "name": "Distance between heart and left side",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0.92",
+        "payloadType": "num",
+        "x": 200,
+        "y": 660,
+        "wires": [
+            [
+                "25601874a571bca1"
+            ]
+        ]
+    },
+    {
+        "id": "587a813784369d8d",
+        "type": "inject",
+        "z": "a1b2b31b.65fe7",
+        "name": "Distance between heart and right side",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1.12",
+        "payloadType": "num",
+        "x": 210,
+        "y": 740,
+        "wires": [
+            [
+                "25601874a571bca1"
+            ]
+        ]
+    },
+    {
+        "id": "25601874a571bca1",
+        "type": "join",
+        "z": "a1b2b31b.65fe7",
+        "name": "",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": " ",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "3",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 490,
+        "y": 660,
+        "wires": [
+            [
+                "c1c3aa6132e37e04",
+                "8ec4f137e43e098c"
+            ]
+        ]
+    }
+]
